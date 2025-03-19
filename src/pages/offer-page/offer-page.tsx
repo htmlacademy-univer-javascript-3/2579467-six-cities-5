@@ -1,4 +1,4 @@
-const OfferPage = () => (
+export const OfferPage = () => (
   <div className="page">
     <header className="header">
       <div className="container">
@@ -334,5 +334,3 @@ const OfferPage = () => (
     </main>
   </div>
 );
-
-export { OfferPage };
