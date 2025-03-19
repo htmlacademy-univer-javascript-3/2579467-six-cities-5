@@ -4,7 +4,7 @@ type MainPageProps = {
   cardsNumber: number;
 }
 
-const MainPage = ({cardsNumber}: MainPageProps): JSX.Element => (
+export const MainPage = ({cardsNumber}: MainPageProps): JSX.Element => (
   <div className="page page--gray page--main">
     <header className="header">
       <div className="container">
@@ -109,5 +109,3 @@ const MainPage = ({cardsNumber}: MainPageProps): JSX.Element => (
     </main>
   </div>
 );
-
-export { MainPage };

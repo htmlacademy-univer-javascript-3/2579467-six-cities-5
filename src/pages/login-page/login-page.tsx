@@ -1,4 +1,4 @@
-const LoginPage = (): JSX.Element => (
+export const LoginPage = (): JSX.Element => (
   <div className="page page--gray page--login">
     <header className="header">
       <div className="container">
@@ -39,5 +39,3 @@ const LoginPage = (): JSX.Element => (
     </main>
   </div>
 );
-
-export { LoginPage };

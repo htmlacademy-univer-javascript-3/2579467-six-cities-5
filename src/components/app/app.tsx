@@ -5,14 +5,14 @@ import { FavoritesPage } from '../../pages/favorites-page/favorites-page';
 import { OfferPage } from '../../pages/offer-page/offer-page';
 import { AppRoute } from '../../const';
 import { NotFoundPage } from '../../pages/not-found-page/not-found-page';
-import PrivateRoute from '../private-route/private-route';
+import { PrivateRoute } from '../private-route/private-route';
 import { AuthorizationStatus } from '../../const';
 
 type AppProps = {
   cardsNumber: number;
 }
 
-const App = ({cardsNumber}: AppProps): JSX.Element => (
+export const App = ({cardsNumber}: AppProps): JSX.Element => (
   <BrowserRouter>
     <Routes>
       <Route
@@ -45,5 +45,3 @@ const App = ({cardsNumber}: AppProps): JSX.Element => (
 
   </BrowserRouter>
 );
-
-export { App };

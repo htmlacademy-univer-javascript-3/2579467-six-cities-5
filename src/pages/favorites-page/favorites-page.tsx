@@ -1,4 +1,4 @@
-const FavoritesPage = (): JSX.Element => (
+export const FavoritesPage = (): JSX.Element => (
   <div className="page">
     <header className="header">
       <div className="container">
@@ -165,5 +165,3 @@ const FavoritesPage = (): JSX.Element => (
     </footer>
   </div>
 );
-
-export { FavoritesPage };
