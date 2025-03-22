@@ -52,7 +52,7 @@ export const FavoritesPage = ({ offers }: FavoritesProps): JSX.Element => {
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
             <ul className="favorites__list">
-              {Object.keys(favorites).map((city) => (
+              {Object.entries(favorites).map(([city, offer]) => (
                 <li className="favorites__locations-items" key={city}>
                   <div className="favorites__locations locations locations--current">
                     <div className="locations__item">
@@ -61,7 +61,7 @@ export const FavoritesPage = ({ offers }: FavoritesProps): JSX.Element => {
                       </Link>
                     </div>
                   </div>
-                  <OffersList offers={favorites[city]} variant="favorites" />
+                  <OffersList offers={offer} variant="favorites" />
                 </li>
               ))}
             </ul>

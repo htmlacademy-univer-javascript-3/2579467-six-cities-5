@@ -25,10 +25,15 @@ export const CommentForm = (): JSX.Element => {
       <label className="reviews__label form__label" htmlFor="review">Your review</label>
       <div className="reviews__rating-form form__rating">
         {
-          Object.keys(ratingObject).map((rating) => {
-            const key = rating as keyof typeof ratingObject;
-            return (<Star key={ratingObject[key]} title={rating} value={ratingObject[key]} onChange={handleFieldChange}/>);
-          })
+          Object.entries(ratingObject).map(([title, value]) =>
+            (
+              <Star
+                key={value}
+                title={title}
+                value={value}
+                onChange={handleFieldChange}
+              />
+            ))
         }
       </div>
       <textarea className="reviews__textarea form__textarea" id="review" name="review" placeholder="Tell how was your stay, what you like and what can be improved" onChange={handleFieldChange} value={formData.review}></textarea>
