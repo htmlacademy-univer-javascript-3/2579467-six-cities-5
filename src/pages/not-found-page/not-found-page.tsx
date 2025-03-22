@@ -1,6 +1,8 @@
+import { Link } from 'react-router-dom';
+
 export const NotFoundPage = (): JSX.Element => (
   <section>
     <h1>404. Page not found</h1>
-    <a href="/">Вернуться на главную</a>
+    <Link to="/">Вернуться на главную</Link>
   </section>
 );
