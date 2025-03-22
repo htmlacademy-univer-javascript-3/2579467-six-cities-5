@@ -10,16 +10,15 @@ import { AuthorizationStatus } from '../../const';
 import { Offers } from '../../types/types';
 
 type AppProps = {
-  cardsNumber: number;
   offers: Offers[];
 }
 
-export const App = ({ cardsNumber, offers }: AppProps): JSX.Element => (
+export const App = ({ offers }: AppProps): JSX.Element => (
   <BrowserRouter>
     <Routes>
       <Route
         path={AppRoute.Main}
-        element={<MainPage cardsNumber={cardsNumber} offers={offers} />}
+        element={<MainPage offers={offers} />}
       />
       <Route
         path={AppRoute.Login}
