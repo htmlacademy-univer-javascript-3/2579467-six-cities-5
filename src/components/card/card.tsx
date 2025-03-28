@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import { Offers } from '../../types/types';
+import { Offer } from '../../types/types';
 
 type CardProps = {
-  offer: Offers;
+  offer: Offer;
   variant?: string;
   onMouseEnter: () => void;
   onMouseLeave: () => void;

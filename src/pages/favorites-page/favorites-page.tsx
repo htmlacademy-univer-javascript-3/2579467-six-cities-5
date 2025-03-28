@@ -1,13 +1,13 @@
 import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
-import { Offers } from '../../types/types';
+import { Offer } from '../../types/types';
 import { OffersList } from '../../components/offers-list/offers-list';
 
 type FavoritesProps = {
-  offers: Offers[];
+  offers: Offer[];
 };
 
-type GroupedOffersByCity = { [key: string]: Offers[] };
+type GroupedOffersByCity = {[key: string]: Offer[] };
 
 export const FavoritesPage = ({ offers }: FavoritesProps): JSX.Element => {
   const favorites = offers

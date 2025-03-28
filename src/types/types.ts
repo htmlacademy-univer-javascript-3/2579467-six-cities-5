@@ -3,13 +3,13 @@ type City = {
   location: Location;
 }
 
-type Location = {
+export type Location = {
   latitude: number;
   longitude: number;
   zoom: number;
 };
 
-export type Offers = {
+export type Offer = {
   id: string;
   title: string;
   type: string;
@@ -21,3 +21,13 @@ export type Offers = {
   rating: number;
   previewImage: string;
 };
+
+export type CityMap = {
+  title: string;
+  location: Location;
+};
+
+export type Point = {
+  title: string;
+  location: Location;
+}

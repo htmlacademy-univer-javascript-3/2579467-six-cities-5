@@ -1,22 +1,22 @@
-import { Offers } from '../types/types';
+import { Offer } from '../types/types';
 
-export const mockOffers: Offers[] = [
+export const mockOffers: Offer[] = [
   {
     id: '6af6f711-c28d-4121-82cd-e0b462a27f00',
     title: 'Beautiful & luxurious studio at great location',
     type: 'apartment',
     price: 120,
     city: {
-      name: 'Berlin',
+      name: 'Amsterdam',
       location: {
-        latitude: 52.3551,
-        longitude: 4.6738,
+        latitude: 52.3909553943508,
+        longitude: 4.85309666406198,
         zoom: 8
       }
     },
     location: {
-      latitude: 52.3551,
-      longitude: 4.6738,
+      latitude: 52.3909553943508,
+      longitude: 4.85309666406198,
       zoom: 8
     },
     isFavorite: true,
@@ -30,16 +30,16 @@ export const mockOffers: Offers[] = [
     type: 'house',
     price: 250,
     city: {
-      name: 'Berlin',
+      name: 'Amsterdam',
       location: {
-        latitude: 52.5200,
-        longitude: 13.4050,
+        latitude: 52.3609553943508,
+        longitude: 4.85309666406198,
         zoom: 10
       }
     },
     location: {
-      latitude: 52.5200,
-      longitude: 13.4050,
+      latitude: 52.3609553943508,
+      longitude: 4.85309666406198,
       zoom: 10
     },
     isFavorite: true,
@@ -53,16 +53,16 @@ export const mockOffers: Offers[] = [
     type: 'loft',
     price: 180,
     city: {
-      name: 'Paris',
+      name: 'Amsterdam',
       location: {
-        latitude: 48.8566,
-        longitude: 2.3522,
+        latitude: 52.3909553943508,
+        longitude: 4.929309666406198,
         zoom: 9
       }
     },
     location: {
-      latitude: 48.8566,
-      longitude: 2.3522,
+      latitude: 52.3909553943508,
+      longitude: 4.929309666406198,
       zoom: 9
     },
     isFavorite: false,
@@ -76,16 +76,16 @@ export const mockOffers: Offers[] = [
     type: 'villa',
     price: 400,
     city: {
-      name: 'Barcelona',
+      name: 'Amsterdam',
       location: {
-        latitude: 41.3851,
-        longitude: 2.1734,
+        latitude: 52.3809553943508,
+        longitude: 4.939309666406198,
         zoom: 9
       }
     },
     location: {
-      latitude: 41.3851,
-      longitude: 2.1734,
+      latitude: 52.3809553943508,
+      longitude: 4.939309666406198,
       zoom: 9
     },
     isFavorite: true,
