@@ -13,6 +13,11 @@ type MainPageProps = {
 export const MainPage = ({ offers }: MainPageProps): JSX.Element => {
   const [selectedPoint, setSelectedPoint] = useState<Offer | null>(null);
 
+  const handleItemHover = (id: string) => {
+    const currentPoint = offers.find((offer) => offer.id === id) || null;
+    setSelectedPoint(currentPoint);
+  };
+
   return (
     <div className="page page--gray page--main">
       <header className="header">
@@ -104,7 +109,7 @@ export const MainPage = ({ offers }: MainPageProps): JSX.Element => {
               <div className="cities__places-list places__list tabs__content">
                 <OffersList
                   offers={offers}
-                  onMouseEnter={(id) => setSelectedPoint(offers.find((offer) => offer.id === id) || null)}
+                  onMouseEnter={handleItemHover}
                   onMouseLeave={() => setSelectedPoint(null)}
                 />
               </div>

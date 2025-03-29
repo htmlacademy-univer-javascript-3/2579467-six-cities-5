@@ -22,10 +22,6 @@ export type Offer = {
   previewImage: string;
 };
 
-export type CityMap = {
-  title: string;
-  location: Location;
-};
 
 export type Point = {
   title: string;

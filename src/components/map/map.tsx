@@ -1,12 +1,12 @@
 import { useEffect, useRef } from 'react';
-import { CityMap, Point } from '../../types/types';
+import { Point } from '../../types/types';
 import 'leaflet/dist/leaflet.css';
 import leaflet from 'leaflet';
 import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../../const';
 import { useMap } from './use-map';
 
 type MapProps = {
-  city: CityMap;
+  city: Point;
   points: Point[];
   selectedPoint: Point | null;
 };
@@ -25,20 +25,29 @@ const currentMarker = leaflet.icon({
 
 export const Map = ({city, points, selectedPoint}: MapProps) => {
   const mapRef = useRef(null);
+  const markersRef = useRef<leaflet.Marker[]>([]);
   const map = useMap(mapRef, city);
 
   useEffect(() => {
     if(map) {
+      markersRef.current.forEach((marker) => map.removeLayer(marker));
+      markersRef.current = [];
+
       points.forEach((point) => {
-        leaflet.marker({
+        const marker = leaflet.marker({
           lat: point.location.latitude,
           lng: point.location.longitude,
         }, {
           icon: (selectedPoint !== null &&
             point.title === selectedPoint.title) ?
             currentMarker : defaultMarker,
-        }).addTo(map);
+        });
+
+        marker.addTo(map);
+        markersRef.current.push(marker);
+
       });
+
     }
   }, [map, points, selectedPoint]);
 

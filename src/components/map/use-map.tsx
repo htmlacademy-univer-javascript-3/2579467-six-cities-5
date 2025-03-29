@@ -1,9 +1,9 @@
 import { useEffect, useState, useRef } from 'react';
 import leaflet from 'leaflet';
 import { Map } from 'leaflet';
-import { CityMap } from '../../types/types';
+import { Point } from '../../types/types';
 
-export const useMap = (mapRef : React.RefObject<HTMLDivElement>, city : CityMap) => {
+export const useMap = (mapRef : React.RefObject<HTMLDivElement>, city : Point) => {
   const [map, setMap] = useState<Map|null>(null);
   const isRenderedRef = useRef(false);
 
