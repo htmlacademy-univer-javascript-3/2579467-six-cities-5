@@ -30,9 +30,6 @@ export const Map = ({city, points, selectedPoint}: MapProps) => {
 
   useEffect(() => {
     if(map) {
-      markersRef.current.forEach((marker) => map.removeLayer(marker));
-      markersRef.current = [];
-
       points.forEach((point) => {
         const marker = leaflet.marker({
           lat: point.location.latitude,
@@ -49,6 +46,10 @@ export const Map = ({city, points, selectedPoint}: MapProps) => {
       });
 
     }
+    return () => {
+      markersRef.current.forEach((marker) => map?.removeLayer(marker));
+      markersRef.current = [];
+    };
   }, [map, points, selectedPoint]);
 
   return (
