@@ -7,10 +7,10 @@ import { AppRoute } from '../../const';
 import { NotFoundPage } from '../../pages/not-found-page/not-found-page';
 import { PrivateRoute } from '../private-route/private-route';
 import { AuthorizationStatus } from '../../const';
-import { Offers } from '../../types/types';
+import { Offer } from '../../types/types';
 
 type AppProps = {
-  offers: Offers[];
+  offers: Offer[];
 }
 
 export const App = ({ offers }: AppProps): JSX.Element => (
