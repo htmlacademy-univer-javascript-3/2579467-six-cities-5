@@ -1,5 +1,7 @@
+/* eslint-disable no-constant-condition */
 import { Link } from 'react-router-dom';
 import { Offer } from '../../types/types';
+import { CARD_CLASS, CARD_INFO_CLASS, IMAGE_WRAPPER_CLASS } from '../../const';
 
 type CardProps = {
   offer: Offer;
@@ -11,9 +13,11 @@ type CardProps = {
 export const Card = ({ offer, variant = 'default', onMouseEnter, onMouseLeave}: CardProps): JSX.Element => {
 
   const isFavorites = variant === 'favorites';
-  const cardClass = isFavorites ? 'favorites__card' : 'cities__card';
-  const imageWrapperClass = isFavorites ? 'favorites__image-wrapper' : 'cities__image-wrapper';
-  const cardInfoClass = isFavorites ? 'favorites__card-info' : 'place-card__info';
+
+  const cardClass = CARD_CLASS[variant as keyof typeof CARD_CLASS];
+  const imageWrapperClass = IMAGE_WRAPPER_CLASS[variant as keyof typeof IMAGE_WRAPPER_CLASS];
+  const cardInfoClass = CARD_INFO_CLASS[variant as keyof typeof CARD_INFO_CLASS];
+
   const imageSize = isFavorites ? { width: 150, height: 110 } : { width: 260, height: 200 };
 
   return (

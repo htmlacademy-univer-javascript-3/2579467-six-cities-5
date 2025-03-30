@@ -11,7 +11,7 @@ type MainPageProps = {
 }
 
 export const MainPage = ({ offers }: MainPageProps): JSX.Element => {
-  const [selectedPoint, setSelectedPoint] = useState<Offer | null>(null);
+  const [selectedPoint, setSelectedPoint] = useState<Offer|null>(null);
 
   const handleItemHover = (id: string) => {
     const currentPoint = offers.find((offer) => offer.id === id) || null;
