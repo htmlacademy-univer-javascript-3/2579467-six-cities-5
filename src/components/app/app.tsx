@@ -7,13 +7,15 @@ import { AppRoute } from '../../const';
 import { NotFoundPage } from '../../pages/not-found-page/not-found-page';
 import { PrivateRoute } from '../private-route/private-route';
 import { AuthorizationStatus } from '../../const';
-import { Offer } from '../../types/types';
+import { Offer, Review } from '../../types/types';
 
 type AppProps = {
   offers: Offer[];
+  reviews: Review[];
+  offersNearby: Offer[];
 }
 
-export const App = ({ offers }: AppProps): JSX.Element => (
+export const App = ({ offers, reviews, offersNearby }: AppProps): JSX.Element => (
   <BrowserRouter>
     <Routes>
       <Route
@@ -36,7 +38,7 @@ export const App = ({ offers }: AppProps): JSX.Element => (
       />
       <Route
         path={AppRoute.Offer}
-        element={<OfferPage />}
+        element={<OfferPage reviews={reviews} offersNearby={offersNearby}/>}
       />
       <Route
         path="*"

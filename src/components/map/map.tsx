@@ -23,6 +23,7 @@ const currentMarker = leaflet.icon({
   iconAnchor: [20, 40],
 });
 
+
 export const Map = ({city, points, selectedPoint}: MapProps) => {
   const mapRef = useRef(null);
   const markersRef = useRef<leaflet.Marker[]>([]);
@@ -53,7 +54,7 @@ export const Map = ({city, points, selectedPoint}: MapProps) => {
   }, [map, points, selectedPoint]);
 
   return (
-    <div style={{height: '700px'}}
+    <div style={{height: '100%', width: '100%'}}
       ref={mapRef}
     >
     </div>
