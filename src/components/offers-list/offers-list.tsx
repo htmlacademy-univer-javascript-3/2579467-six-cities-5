@@ -4,13 +4,13 @@ import { OFFERS_LIST_CLASS } from '../../const';
 
 type OffersListProps = {
   offers: Offer[];
-  variant?: string;
+  variant?: 'favorites' | 'default' | 'nearby';
   onMouseEnter?: (id: string) => void;
   onMouseLeave?: () => void;
 };
 
 export const OffersList = ({ offers, variant = 'default', onMouseEnter, onMouseLeave}: OffersListProps): JSX.Element => {
-  const listClass = OFFERS_LIST_CLASS[variant as keyof typeof OFFERS_LIST_CLASS];
+  const listClass = OFFERS_LIST_CLASS[variant];
 
   return (
     <div className={listClass}>

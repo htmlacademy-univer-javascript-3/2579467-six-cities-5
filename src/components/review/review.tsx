@@ -1,4 +1,6 @@
 import { Review } from '../../types/types';
+import { formatDateShort, formatDateLong } from '../../helpers';
+import { Rating } from '../rating/rating';
 
 type ReviewProps = {
   review: Review;
@@ -7,8 +9,8 @@ type ReviewProps = {
 export const ReviewItem = ({ review } : ReviewProps) => {
   const date = new Date(review.date);
 
-  const formatDateShort = date.toISOString().split('T')[0];
-  const formatDateLong = date.toLocaleDateString('en-US', { year: 'numeric', month: 'long' });
+  const dateShort = formatDateShort(date);
+  const dateLong = formatDateLong(date);
 
   return (
     <li className="reviews__item">
@@ -21,16 +23,11 @@ export const ReviewItem = ({ review } : ReviewProps) => {
         </span>
       </div>
       <div className="reviews__info">
-        <div className="reviews__rating rating">
-          <div className="reviews__stars rating__stars">
-            <span style={{width: review.rating * 20}}></span>
-            <span className="visually-hidden">Rating</span>
-          </div>
-        </div>
+        <Rating rating={review.rating} className="place-card__rating" starsClassName="place-card__stars" />
         <p className="reviews__text">
           {review.comment}
         </p>
-        <time className="reviews__time" dateTime={formatDateShort}>{formatDateLong}</time>
+        <time className="reviews__time" dateTime={dateShort}>{dateLong}</time>
       </div>
     </li>
   );

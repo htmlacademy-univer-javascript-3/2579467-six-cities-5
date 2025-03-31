@@ -2,10 +2,11 @@
 import { Link } from 'react-router-dom';
 import { Offer } from '../../types/types';
 import { CARD_CLASS, CARD_INFO_CLASS, IMAGE_WRAPPER_CLASS } from '../../const';
+import { Rating } from '../rating/rating';
 
 type CardProps = {
   offer: Offer;
-  variant?: string;
+  variant?: 'favorites' | 'default' | 'nearby';
   onMouseEnter: () => void;
   onMouseLeave: () => void;
 };
@@ -14,9 +15,9 @@ export const Card = ({ offer, variant = 'default', onMouseEnter, onMouseLeave}: 
 
   const isFavorites = variant === 'favorites';
 
-  const cardClass = CARD_CLASS[variant as keyof typeof CARD_CLASS];
-  const imageWrapperClass = IMAGE_WRAPPER_CLASS[variant as keyof typeof IMAGE_WRAPPER_CLASS];
-  const cardInfoClass = CARD_INFO_CLASS[variant as keyof typeof CARD_INFO_CLASS];
+  const cardClass = CARD_CLASS[variant];
+  const imageWrapperClass = IMAGE_WRAPPER_CLASS[variant];
+  const cardInfoClass = CARD_INFO_CLASS[variant];
 
   const imageSize = isFavorites ? { width: 150, height: 110 } : { width: 260, height: 200 };
 
@@ -51,12 +52,7 @@ export const Card = ({ offer, variant = 'default', onMouseEnter, onMouseLeave}: 
             <span className="visually-hidden">To bookmarks</span>
           </button>
         </div>
-        <div className="place-card__rating rating">
-          <div className="place-card__stars rating__stars">
-            <span style={{ width: `${offer.rating * 20}%` }}></span>
-            <span className="visually-hidden">Rating</span>
-          </div>
-        </div>
+        <Rating rating={offer.rating} className="place-card__rating" starsClassName="place-card__stars" />
         <h2 className="place-card__name">
           <Link to={`/offer/${offer.id}`}>{offer.title}</Link>
         </h2>
