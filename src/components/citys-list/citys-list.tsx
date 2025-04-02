@@ -9,7 +9,7 @@ type citysListProps = {
 export const CitysList = ({onClick} : citysListProps): JSX.Element => (
   <ul className="locations__list tabs__list">
     {
-      Object.entries(CITYS).map(([, city]) =>
+      CITYS.map((city) =>
         (
           <CityItem
             key={city.title}

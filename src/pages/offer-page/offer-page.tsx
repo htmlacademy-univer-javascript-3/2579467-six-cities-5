@@ -6,6 +6,7 @@ import { Review, Offer } from '../../types/types';
 import { OffersList } from '../../components/offers-list/offers-list';
 import { Map } from '../../components/map/map';
 import { useState } from 'react';
+import { CURRENT_CITY } from '../../const';
 
 type OfferPageProps = {
   reviews: Review[];
@@ -180,7 +181,7 @@ export const OfferPage = ({ reviews, offersNearby } : OfferPageProps) => {
 
           <section className="offer__map map">
             <Map
-              city={offersNearby[0].city}
+              city={CURRENT_CITY}
               points={offersNearby}
               selectedPoint={selectedPoint}
             />
