@@ -1,5 +1,5 @@
-type City = {
-  name: string;
+export type City = {
+  title: string;
   location: Location;
 }
 

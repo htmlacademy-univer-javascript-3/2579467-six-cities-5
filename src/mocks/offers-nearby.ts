@@ -7,7 +7,7 @@ export const mockOffersNearby: Offer[] = [
     type: 'room',
     price: 95,
     city: {
-      name: 'Amsterdam',
+      title: 'Amsterdam',
       location: {
         latitude: 52.3959553943508,
         longitude: 4.85709666406198,
@@ -30,7 +30,7 @@ export const mockOffersNearby: Offer[] = [
     type: 'apartment',
     price: 130,
     city: {
-      name: 'Amsterdam',
+      title: 'Amsterdam',
       location: {
         latitude: 52.3709553943508,
         longitude: 4.84309666406198,
@@ -53,7 +53,7 @@ export const mockOffersNearby: Offer[] = [
     type: 'apartment',
     price: 175,
     city: {
-      name: 'Amsterdam',
+      title: 'Amsterdam',
       location: {
         latitude: 52.3859553943508,
         longitude: 4.915309666406198,

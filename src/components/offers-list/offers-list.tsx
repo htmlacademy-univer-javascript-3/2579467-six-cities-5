@@ -12,6 +12,7 @@ type OffersListProps = {
 export const OffersList = ({ offers, variant = 'default', onMouseEnter, onMouseLeave}: OffersListProps): JSX.Element => {
   const listClass = OFFERS_LIST_CLASS[variant];
 
+
   return (
     <div className={listClass}>
       {offers.map((offer) => (

@@ -10,17 +10,16 @@ import { AuthorizationStatus } from '../../const';
 import { Offer, Review } from '../../types/types';
 
 type AppProps = {
-  offers: Offer[];
   reviews: Review[];
   offersNearby: Offer[];
 }
 
-export const App = ({ offers, reviews, offersNearby }: AppProps): JSX.Element => (
+export const App = ({ reviews, offersNearby }: AppProps): JSX.Element => (
   <BrowserRouter>
     <Routes>
       <Route
         path={AppRoute.Main}
-        element={<MainPage offers={offers} />}
+        element={<MainPage/>}
       />
       <Route
         path={AppRoute.Login}
@@ -32,7 +31,7 @@ export const App = ({ offers, reviews, offersNearby }: AppProps): JSX.Element =>
           <PrivateRoute
             authorizationStatus={AuthorizationStatus.Auth}
           >
-            <FavoritesPage offers={offers}/>
+            <FavoritesPage/>
           </PrivateRoute>
         }
       />
