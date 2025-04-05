@@ -1,12 +1,12 @@
 import { useEffect, useRef } from 'react';
-import { Point } from '../../types/types';
+import { Point, City } from '../../types/types';
 import 'leaflet/dist/leaflet.css';
 import leaflet from 'leaflet';
 import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../../const';
 import { useMap } from './use-map';
 
 type MapProps = {
-  city: Point;
+  city: City;
   points: Point[];
   selectedPoint: Point | null;
 };

@@ -2,14 +2,14 @@ import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { Offer } from '../../types/types';
 import { OffersList } from '../../components/offers-list/offers-list';
-
-type FavoritesProps = {
-  offers: Offer[];
-};
+import { useAppSelector } from '../../hooks/hooks';
 
 type GroupedOffersByCity = {[key: string]: Offer[] };
 
-export const FavoritesPage = ({ offers }: FavoritesProps): JSX.Element => {
+export const FavoritesPage = (): JSX.Element => {
+
+  const offers = useAppSelector((state) => state.offers);
+
   const favorites = offers
     .filter((offer) => offer.isFavorite)
     .reduce((acc: GroupedOffersByCity, offer) => {

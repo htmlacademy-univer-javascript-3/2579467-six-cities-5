@@ -15,14 +15,6 @@ export const URL_MARKER_DEFAULT = 'img/pin.svg';
 
 export const URL_MARKER_CURRENT = 'img/pin-active.svg';
 
-export const CURRENT_CITY = {
-  title: 'Amsterdam',
-  location: {
-    latitude: 52.3709553943508,
-    longitude: 4.88309666406198,
-    zoom: 12,
-  }
-};
 
 export const CARD_CLASS = {
   favorites: 'favorites__card',
@@ -47,4 +39,65 @@ export const OFFERS_LIST_CLASS = {
   nearby: 'near-places__list places__list',
   default: 'cities__places-list places__list tabs__content',
 };
+
+export enum CityName {
+  Paris = 'Paris',
+  Cologne = 'Cologne',
+  Brussels = 'Brussels',
+  Amsterdam = 'Amsterdam',
+  Hamburg = 'Hamburg',
+  Dusseldorf = 'Dusseldorf'
+}
+
+export const CITIES = [
+  {
+    name: CityName.Paris,
+    location: {
+      latitude: 48.8566,
+      longitude: 2.3522,
+      zoom: 12,
+    }
+  },
+  {
+    name: CityName.Cologne,
+    location: {
+      latitude: 50.9375,
+      longitude: 6.9603,
+      zoom: 12,
+    }
+  },
+  {
+    name: CityName.Brussels,
+    location: {
+      latitude: 50.8503,
+      longitude: 4.3517,
+      zoom: 12,
+    }
+  },
+  {
+    name: CityName.Amsterdam,
+    location: {
+      latitude: 52.3709553943508,
+      longitude: 4.88309666406198,
+      zoom: 12,
+    }
+  },
+  {
+    name: CityName.Hamburg,
+    location: {
+      latitude: 53.5511,
+      longitude: 9.9937,
+      zoom: 12,
+    }
+  },
+  {
+    name: CityName.Dusseldorf,
+    location: {
+      latitude: 51.2277,
+      longitude: 6.7735,
+      zoom: 12,
+    }
+  }
+];
+
 
