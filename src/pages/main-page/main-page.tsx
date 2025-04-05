@@ -1,13 +1,12 @@
 import { OffersList } from '../../components/offers-list/offers-list';
-import { CitysList } from '../../components/citys-list/citys-list';
+import { CitiesList } from '../../components/cities-list/cities-list';
 import { Offer } from '../../types/types';
 import { AppRoute } from '../../const';
 import { Link } from 'react-router-dom';
 import { Map } from '../../components/map/map';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
-import { changeCity, setOffers } from '../../store/action';
-import { mockOffers } from '../../mocks/offers';
+import { changeCity } from '../../store/action';
 
 
 export const MainPage = (): JSX.Element => {
@@ -18,9 +17,7 @@ export const MainPage = (): JSX.Element => {
 
   const dispatch = useAppDispatch();
 
-  useEffect(() => {
-    dispatch(setOffers(mockOffers.filter((offer) => offer.city.title === currentCity.title)));
-  }, [currentCity, dispatch]);
+  const currentOffers = offers.filter((offer) => offer.city.name === currentCity.name);
 
   const handleItemHover = (id: string) => {
     const currentPoint = offers.find((offer) => offer.id === id) || null;
@@ -61,9 +58,8 @@ export const MainPage = (): JSX.Element => {
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <section className="locations container">
-            <CitysList onClick={(city) => {
+            <CitiesList onClick={(city) => {
               dispatch(changeCity(city));
-              dispatch(setOffers(mockOffers.filter((offer) => offer.city.title === city.title)));
             }}
             />
           </section>
@@ -72,7 +68,7 @@ export const MainPage = (): JSX.Element => {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{offers.length} places to stay in {currentCity.title}</b>
+              <b className="places__found">{currentOffers.length} places to stay in {currentCity.name}</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex={0}>
@@ -90,7 +86,7 @@ export const MainPage = (): JSX.Element => {
               </form>
               <div className="cities__places-list places__list tabs__content">
                 <OffersList
-                  offers={offers}
+                  offers={currentOffers}
                   onMouseEnter={handleItemHover}
                   onMouseLeave={() => setSelectedPoint(null)}
                 />
@@ -100,7 +96,7 @@ export const MainPage = (): JSX.Element => {
               <section className="cities__map map">
                 <Map
                   city={currentCity}
-                  points={offers}
+                  points={currentOffers}
                   selectedPoint={selectedPoint}
                 />
               </section>

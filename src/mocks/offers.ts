@@ -7,7 +7,7 @@ export const mockOffers: Offer[] = [
     type: 'apartment',
     price: 120,
     city: {
-      title: 'Amsterdam',
+      name: 'Amsterdam',
       location: {
         latitude: 52.3909553943508,
         longitude: 4.85309666406198,
@@ -30,7 +30,7 @@ export const mockOffers: Offer[] = [
     type: 'house',
     price: 250,
     city: {
-      title: 'Amsterdam',
+      name: 'Amsterdam',
       location: {
         latitude: 52.3609553943508,
         longitude: 4.85309666406198,
@@ -53,7 +53,7 @@ export const mockOffers: Offer[] = [
     type: 'loft',
     price: 180,
     city: {
-      title: 'Amsterdam',
+      name: 'Amsterdam',
       location: {
         latitude: 52.3909553943508,
         longitude: 4.929309666406198,
@@ -76,7 +76,7 @@ export const mockOffers: Offer[] = [
     type: 'villa',
     price: 400,
     city: {
-      title: 'Amsterdam',
+      name: 'Amsterdam',
       location: {
         latitude: 52.3809553943508,
         longitude: 4.939309666406198,

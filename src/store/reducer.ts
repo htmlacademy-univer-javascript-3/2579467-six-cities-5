@@ -1,6 +1,6 @@
 import { Offer, City } from '../types/types';
 import { changeCity, setOffers } from './action';
-import { CITYS } from '../const';
+import { CITIES } from '../const';
 
 import { createReducer } from '@reduxjs/toolkit';
 
@@ -10,7 +10,7 @@ type State = {
 }
 
 const initialState: State = {
-  city: CITYS[0],
+  city: CITIES[0],
   offers: [],
 };
 

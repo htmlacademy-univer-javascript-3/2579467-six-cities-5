@@ -2,16 +2,18 @@ import { Link } from 'react-router-dom';
 import { AppRoute } from '../../const';
 import { Offer } from '../../types/types';
 import { OffersList } from '../../components/offers-list/offers-list';
-import { mockOffers } from '../../mocks/offers';
+import { useAppSelector } from '../../hooks/hooks';
 
 type GroupedOffersByCity = {[key: string]: Offer[] };
 
 export const FavoritesPage = (): JSX.Element => {
 
-  const favorites = mockOffers
+  const offers = useAppSelector((state) => state.offers);
+
+  const favorites = offers
     .filter((offer) => offer.isFavorite)
     .reduce((acc: GroupedOffersByCity, offer) => {
-      (acc[offer.city.title] ||= []).push(offer);
+      (acc[offer.city.name] ||= []).push(offer);
       return acc;
     }, {});
 

@@ -1,19 +1,19 @@
-import { CITYS } from '../../const';
+import { CITIES } from '../../const';
 import { CityItem } from '../city/city';
 import { City } from '../../types/types';
 
-type citysListProps = {
+type citiesListProps = {
   onClick: (city: City) => void;
 }
 
-export const CitysList = ({onClick} : citysListProps): JSX.Element => (
+export const CitiesList = ({onClick} : citiesListProps): JSX.Element => (
   <ul className="locations__list tabs__list">
     {
-      CITYS.map((city) =>
+      CITIES.map((city) =>
         (
           <CityItem
-            key={city.title}
-            cityName={city.title}
+            key={city.name}
+            cityName={city.name}
             onClick={() => onClick(city)}
           />
         ))

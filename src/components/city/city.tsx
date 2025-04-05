@@ -8,7 +8,7 @@ type cityProps = {
 
 export const CityItem = ({cityName, onClick} : cityProps) => {
   const currentCity = useAppSelector((state) => state.city);
-  const isCitySelected = currentCity.title === cityName;
+  const isCitySelected = currentCity.name === cityName;
 
   return (
     <li className="locations__item" onClick={onClick}>
