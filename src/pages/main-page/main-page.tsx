@@ -4,25 +4,50 @@ import { Offer } from '../../types/types';
 import { AppRoute } from '../../const';
 import { Link } from 'react-router-dom';
 import { Map } from '../../components/map/map';
-import { useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { changeCity } from '../../store/action';
+import { SortForm } from '../../components/sort-form/sort-form';
+import { Sort } from '../../types/types';
+import { SortName } from '../../const';
 
 
 export const MainPage = (): JSX.Element => {
   const [selectedPoint, setSelectedPoint] = useState<Offer|null>(null);
+  const [selectedSort, setSelectedSort] = useState<Sort>(SortName.Popular);
+  const [sortedOffers, setSortedOffers] = useState<Offer[]>([]);
 
   const currentCity = useAppSelector((state) => state.city);
   const offers = useAppSelector((state) => state.offers);
 
   const dispatch = useAppDispatch();
 
-  const currentOffers = offers.filter((offer) => offer.city.name === currentCity.name);
+  const currentOffers = useMemo(() => offers.filter((offer) => offer.city.name === currentCity.name), [offers, currentCity]);
 
   const handleItemHover = (id: string) => {
     const currentPoint = offers.find((offer) => offer.id === id) || null;
     setSelectedPoint(currentPoint);
   };
+
+  const handleSortChange = (variant: Sort) => {
+    setSelectedSort(variant);
+  };
+
+  useEffect(() => {
+    switch (selectedSort) {
+      case SortName.Low_to_high:
+        setSortedOffers(currentOffers.toSorted((a, b) => a.price - b.price));
+        break;
+      case SortName.High_to_low:
+        setSortedOffers(currentOffers.toSorted((a, b) => b.price - a.price));
+        break;
+      case SortName.Top_rated:
+        setSortedOffers(currentOffers.toSorted((a, b) => b.rating - a.rating));
+        break;
+      default:
+        setSortedOffers(currentOffers);
+    }
+  }, [currentOffers, selectedSort]);
 
   return (
     <div className="page page--gray page--main">
@@ -69,24 +94,10 @@ export const MainPage = (): JSX.Element => {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">{currentOffers.length} places to stay in {currentCity.name}</b>
-              <form className="places__sorting" action="#" method="get">
-                <span className="places__sorting-caption">Sort by</span>
-                <span className="places__sorting-type" tabIndex={0}>
-                  Popular
-                  <svg className="places__sorting-arrow" width="7" height="4">
-                    <use xlinkHref="#icon-arrow-select"></use>
-                  </svg>
-                </span>
-                <ul className="places__options places__options--custom places__options--opened">
-                  <li className="places__option places__option--active" tabIndex={0}>Popular</li>
-                  <li className="places__option" tabIndex={0}>Price: low to high</li>
-                  <li className="places__option" tabIndex={0}>Price: high to low</li>
-                  <li className="places__option" tabIndex={0}>Top rated first</li>
-                </ul>
-              </form>
+              <SortForm currentSort={selectedSort} onClick={handleSortChange}/>
               <div className="cities__places-list places__list tabs__content">
                 <OffersList
-                  offers={currentOffers}
+                  offers={sortedOffers}
                   onMouseEnter={handleItemHover}
                   onMouseLeave={() => setSelectedPoint(null)}
                 />
