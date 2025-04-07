@@ -4,18 +4,16 @@ import { Offer } from '../../types/types';
 import { AppRoute } from '../../const';
 import { Link } from 'react-router-dom';
 import { Map } from '../../components/map/map';
-import { useEffect, useMemo, useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { changeCity } from '../../store/action';
 import { SortForm } from '../../components/sort-form/sort-form';
-import { Sort } from '../../types/types';
 import { SortName } from '../../const';
 
 
 export const MainPage = (): JSX.Element => {
   const [selectedPoint, setSelectedPoint] = useState<Offer|null>(null);
-  const [selectedSort, setSelectedSort] = useState<Sort>(SortName.Popular);
-  const [sortedOffers, setSortedOffers] = useState<Offer[]>([]);
+  const [selectedSort, setSelectedSort] = useState<SortName>(SortName.Popular);
 
   const currentCity = useAppSelector((state) => state.city);
   const offers = useAppSelector((state) => state.offers);
@@ -29,23 +27,21 @@ export const MainPage = (): JSX.Element => {
     setSelectedPoint(currentPoint);
   };
 
-  const handleSortChange = (variant: Sort) => {
+  const handleSortChange = (variant: SortName) => {
     setSelectedSort(variant);
   };
 
-  useEffect(() => {
+  const sortedOffers = useMemo(() => {
     switch (selectedSort) {
       case SortName.Low_to_high:
-        setSortedOffers(currentOffers.toSorted((a, b) => a.price - b.price));
-        break;
+        return currentOffers.toSorted((a, b) => a.price - b.price);
       case SortName.High_to_low:
-        setSortedOffers(currentOffers.toSorted((a, b) => b.price - a.price));
-        break;
+        return currentOffers.toSorted((a, b) => b.price - a.price);
       case SortName.Top_rated:
-        setSortedOffers(currentOffers.toSorted((a, b) => b.rating - a.rating));
+        return currentOffers.toSorted((a, b) => b.rating - a.rating);
         break;
       default:
-        setSortedOffers(currentOffers);
+        return currentOffers;
     }
   }, [currentOffers, selectedSort]);
 
@@ -94,7 +90,7 @@ export const MainPage = (): JSX.Element => {
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
               <b className="places__found">{currentOffers.length} places to stay in {currentCity.name}</b>
-              <SortForm currentSort={selectedSort} onClick={handleSortChange}/>
+              <SortForm currentSort={selectedSort} onSortChange={handleSortChange}/>
               <div className="cities__places-list places__list tabs__content">
                 <OffersList
                   offers={sortedOffers}

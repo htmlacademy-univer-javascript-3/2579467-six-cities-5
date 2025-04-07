@@ -47,5 +47,3 @@ export type ClassType = {
   nearby: string;
   default: string;
 }
-
-export type Sort = 'Popular' | 'Price: low to high' | 'Price: high to low' | 'Top rated first';

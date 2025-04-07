@@ -1,24 +1,23 @@
 import { SortName } from '../../const';
-import { Sort } from '../../types/types';
 import { useState } from 'react';
 
 type SortProps = {
-  currentSort: Sort;
-  onClick: (variant: Sort) => void;
+  currentSort: SortName;
+  onSortChange: (variant: SortName) => void;
 }
 
-export const SortForm = ({currentSort, onClick} : SortProps) => {
+export const SortForm = ({currentSort, onSortChange} : SortProps) => {
   const [isOpened, setIsOpened] = useState(false);
 
-  const handleOptionClick = (variant: Sort) => {
-    onClick(variant);
-    setIsOpened(!isOpened);
+  const handleOptionClick = (variant: SortName) => {
+    onSortChange(variant);
+    setIsOpened((prevState) => !prevState);
   };
 
   return (
     <form className="places__sorting" action="#" method="get">
       <span className="places__sorting-caption">Sort by</span>
-      <span className="places__sorting-type" tabIndex={0} onClick={() => setIsOpened(!isOpened)}>
+      <span className="places__sorting-type" tabIndex={0} onClick={() => setIsOpened((prevState) => !prevState)}>
         {currentSort}
         <svg className="places__sorting-arrow" width="7" height="4">
           <use xlinkHref="#icon-arrow-select"></use>
