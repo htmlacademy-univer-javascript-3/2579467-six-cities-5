@@ -53,6 +53,7 @@ export const Map = ({city, points, selectedPoint}: MapProps) => {
     };
   }, [map, points, selectedPoint]);
 
+
   return (
     <div style={{height: '100%', width: '100%'}}
       ref={mapRef}
