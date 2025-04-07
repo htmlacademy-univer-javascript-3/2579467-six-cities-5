@@ -46,20 +46,12 @@ export const Map = ({city, points, selectedPoint}: MapProps) => {
 
       });
 
-      map.setView(
-        {
-          lat: city.location.latitude,
-          lng: city.location.longitude,
-        },
-        city.location.zoom
-      );
-
     }
     return () => {
       markersRef.current.forEach((marker) => map?.removeLayer(marker));
       markersRef.current = [];
     };
-  }, [map, points, selectedPoint, city]);
+  }, [map, points, selectedPoint]);
 
 
   return (

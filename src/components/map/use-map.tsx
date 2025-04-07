@@ -29,7 +29,17 @@ export const useMap = (mapRef : React.RefObject<HTMLDivElement>, city : City) =>
       setMap(instance);
       isRenderedRef.current = true;
     }
-  }, [mapRef, city]);
+
+    if(map) {
+      map.setView(
+        {
+          lat: city.location.latitude,
+          lng: city.location.longitude
+        },
+        city.location.zoom);
+    }
+
+  }, [mapRef, city, map]);
 
   return map;
 };
