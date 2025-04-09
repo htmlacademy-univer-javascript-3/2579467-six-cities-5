@@ -1,3 +1,5 @@
+export const TIMEOUT_SHOW_ERROR = 2000;
+
 export enum AppRoute {
   Main = '/',
   Login = '/login',
@@ -71,7 +73,7 @@ export const CITIES = [
     location: {
       latitude: 50.8503,
       longitude: 4.3517,
-      zoom: 12,
+      zoom: 13,
     }
   },
   {
@@ -79,7 +81,7 @@ export const CITIES = [
     location: {
       latitude: 52.3709553943508,
       longitude: 4.88309666406198,
-      zoom: 12,
+      zoom: 13,
     }
   },
   {
@@ -105,6 +107,10 @@ export enum SortName {
   Low_to_high = 'Price: low to high',
   High_to_low = 'Price: high to low',
   Top_rated = 'Top rated first',
+}
+
+export enum ApiRoute {
+  Offers = '/offers',
 }
 
 
