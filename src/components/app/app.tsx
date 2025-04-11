@@ -17,9 +17,9 @@ type AppProps = {
 }
 
 export const App = ({ reviews, offersNearby }: AppProps): JSX.Element => {
-  const isDataLoading = useAppSelector((state) => state.isDataLoading);
+  const isOffersLoading = useAppSelector((state) => state.isOffersLoading);
 
-  if (isDataLoading) {
+  if (isOffersLoading) {
     return <LoadingPreview/>;
   }
   return (

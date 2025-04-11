@@ -3,8 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AppDispatch, State } from '../types/state';
 import { Offer } from '../types/types';
 import { ApiRoute, TIMEOUT_SHOW_ERROR } from '../const';
-import { loadOffers, setDataLoadingStatus, setError } from './action.js';
-import { store } from './';
+import { loadOffers, setError, setOffersLoadingStatus } from './action.js';
 
 export const fetchOfferAction = createAsyncThunk<void, undefined, {
   dispatch: AppDispatch;
@@ -13,19 +12,22 @@ export const fetchOfferAction = createAsyncThunk<void, undefined, {
 }>(
   'fetchOffers',
   async (_arg, {dispatch, extra: api}) => {
-    dispatch(setDataLoadingStatus(true));
+    dispatch(setOffersLoadingStatus(true));
     const {data} = await api.get<Offer[]>(ApiRoute.Offers);
-    dispatch(setDataLoadingStatus(false));
+    dispatch(setOffersLoadingStatus(false));
     dispatch(loadOffers(data));
   },
 );
 
-export const clearErrorAction = createAsyncThunk(
+export const clearErrorAction = createAsyncThunk<void, void, {
+  dispatch: AppDispatch;
+}>(
   'clearError',
-  () => {
+  (_arg, {dispatch}) => {
     setTimeout(
-      () => store.dispatch(setError(null)),
+      () => dispatch(setError(null)),
       TIMEOUT_SHOW_ERROR,
     );
-  },
+  }
 );
+

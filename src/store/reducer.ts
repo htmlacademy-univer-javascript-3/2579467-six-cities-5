@@ -1,5 +1,5 @@
 import { Offer, City } from '../types/types';
-import { changeCity, setOffers, loadOffers, setError, setDataLoadingStatus } from './action';
+import { changeCity, setOffers, loadOffers, setError, setOffersLoadingStatus } from './action';
 import { CITIES } from '../const';
 
 import { createReducer } from '@reduxjs/toolkit';
@@ -8,14 +8,14 @@ type State = {
   city: City;
   offers: Offer[];
   error: string | null;
-  isDataLoading: boolean;
+  isOffersLoading: boolean;
 }
 
 const initialState: State = {
   city: CITIES[0],
   offers: [],
   error: null,
-  isDataLoading: false,
+  isOffersLoading: false,
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -32,8 +32,8 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(setError, (state, action) => {
       state.error = action.payload;
     })
-    .addCase(setDataLoadingStatus, (state, action) => {
-      state.isDataLoading = action.payload;
+    .addCase(setOffersLoadingStatus, (state, action) => {
+      state.isOffersLoading = action.payload;
     });
 
 });
