@@ -8,10 +8,8 @@ import { NotFoundPage } from '../../pages/not-found-page/not-found-page';
 import { PrivateRoute } from '../private-route/private-route';
 import { AuthorizationStatus } from '../../const';
 import { Offer, Review } from '../../types/types';
-import { mockOffers } from '../../mocks/offers';
-import { useEffect } from 'react';
-import { useAppDispatch } from '../../hooks/hooks';
-import { setOffers } from '../../store/action';
+import { useAppSelector } from '../../hooks/hooks';
+import { LoadingPreview } from '../loading-preview/loading-preview';
 
 type AppProps = {
   reviews: Review[];
@@ -19,12 +17,11 @@ type AppProps = {
 }
 
 export const App = ({ reviews, offersNearby }: AppProps): JSX.Element => {
-  const dispatch = useAppDispatch();
+  const isOffersLoading = useAppSelector((state) => state.isOffersLoading);
 
-  useEffect(() => {
-    dispatch(setOffers(mockOffers));
-  });
-
+  if (isOffersLoading) {
+    return <LoadingPreview/>;
+  }
   return (
     <BrowserRouter>
       <Routes>

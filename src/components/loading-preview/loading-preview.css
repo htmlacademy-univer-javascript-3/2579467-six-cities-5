@@ -1,0 +1,9 @@
+.loading-preview {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  padding: 10px;
+  background-color: grey;
+  color: white;
+  border-radius: 5px;
+}

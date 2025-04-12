@@ -30,7 +30,7 @@ export const useMap = (mapRef : React.RefObject<HTMLDivElement>, city : City) =>
       isRenderedRef.current = true;
     }
 
-    if(map) {
+    if(map && isRenderedRef.current) {
       map.setView(
         {
           lat: city.location.latitude,
