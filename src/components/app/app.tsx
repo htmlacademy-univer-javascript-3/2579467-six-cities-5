@@ -11,6 +11,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { LoadingPreview } from '../loading-preview/loading-preview';
 import { useEffect } from 'react';
 import { checkAuthAction } from '../../store/api-action';
+import { getToken } from '../../services/token';
 
 type AppProps = {
   reviews: Review[];
@@ -22,8 +23,10 @@ export const App = ({ reviews, offersNearby }: AppProps): JSX.Element => {
 
   const dispatch = useAppDispatch();
 
-  useEffect(()=>{
-    dispatch(checkAuthAction());
+  useEffect(() => {
+    if (getToken()) {
+      dispatch(checkAuthAction());
+    }
   },[dispatch]);
 
   if (isOffersLoading) {
