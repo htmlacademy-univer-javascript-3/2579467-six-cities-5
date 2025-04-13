@@ -47,3 +47,17 @@ export type ClassType = {
   nearby: string;
   default: string;
 }
+
+export type AuthData = {
+  login: string;
+  password: string;
+};
+
+export type UserData = {
+  id: number;
+  email: string;
+  token: string;
+  name: string;
+  avatarUrl: string;
+  isPro: boolean;
+};

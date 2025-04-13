@@ -1,4 +1,3 @@
-/* eslint-disable no-constant-condition */
 import { Link } from 'react-router-dom';
 import { Offer } from '../../types/types';
 import { CARD_CLASS, CARD_INFO_CLASS, IMAGE_WRAPPER_CLASS } from '../../const';
