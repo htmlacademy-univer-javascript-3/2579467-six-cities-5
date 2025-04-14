@@ -1,5 +1,5 @@
 import { useEffect, useRef } from 'react';
-import { Point, City } from '../../types/types';
+import { City, Offer } from '../../types/types';
 import 'leaflet/dist/leaflet.css';
 import leaflet from 'leaflet';
 import { URL_MARKER_DEFAULT, URL_MARKER_CURRENT } from '../../const';
@@ -7,8 +7,8 @@ import { useMap } from './use-map';
 
 type MapProps = {
   city: City;
-  points: Point[];
-  selectedPoint: Point | null;
+  points: Offer[];
+  selectedPoint: Offer | null;
 };
 
 const defaultMarker = leaflet.icon({
@@ -37,7 +37,7 @@ export const Map = ({city, points, selectedPoint}: MapProps) => {
           lng: point.location.longitude,
         }, {
           icon: (selectedPoint !== null &&
-            point.title === selectedPoint.title) ?
+            point.id === selectedPoint.id) ?
             currentMarker : defaultMarker,
         });
 

@@ -6,10 +6,12 @@ import { OfferPage } from '../../pages/offer-page/offer-page';
 import { AppRoute } from '../../const';
 import { NotFoundPage } from '../../pages/not-found-page/not-found-page';
 import { PrivateRoute } from '../private-route/private-route';
-import { AuthorizationStatus } from '../../const';
 import { Offer, Review } from '../../types/types';
-import { useAppSelector } from '../../hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { LoadingPreview } from '../loading-preview/loading-preview';
+import { useEffect } from 'react';
+import { checkAuthAction } from '../../store/api-action';
+import { getToken } from '../../services/token';
 
 type AppProps = {
   reviews: Review[];
@@ -19,9 +21,19 @@ type AppProps = {
 export const App = ({ reviews, offersNearby }: AppProps): JSX.Element => {
   const isOffersLoading = useAppSelector((state) => state.isOffersLoading);
 
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    if (getToken()) {
+      dispatch(checkAuthAction());
+    }
+  },[dispatch]);
+
   if (isOffersLoading) {
     return <LoadingPreview/>;
   }
+
+
   return (
     <BrowserRouter>
       <Routes>
@@ -36,9 +48,7 @@ export const App = ({ reviews, offersNearby }: AppProps): JSX.Element => {
         <Route
           path={AppRoute.Favorites}
           element={
-            <PrivateRoute
-              authorizationStatus={AuthorizationStatus.Auth}
-            >
+            <PrivateRoute>
               <FavoritesPage/>
             </PrivateRoute>
           }
@@ -55,3 +65,4 @@ export const App = ({ reviews, offersNearby }: AppProps): JSX.Element => {
     </BrowserRouter>
   );
 };
+
