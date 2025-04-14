@@ -4,7 +4,7 @@ import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { logoutAction } from '../../store/api-action';
 
 export const Header = () => {
-  const UserData = useAppSelector((state) => state.UserData);
+  const userData = useAppSelector((state) => state.userData);
 
   const dispatch = useAppDispatch();
 
@@ -32,7 +32,7 @@ export const Header = () => {
                     <li className="header__nav-item user">
                       <Link to={AppRoute.Favorites} className="header__nav-link header__nav-link--profile">
                         <div className="header__avatar-wrapper user__avatar-wrapper"></div>
-                        <span className="header__user-name user__name">{UserData?.email}</span>
+                        <span className="header__user-name user__name">{userData?.email}</span>
                         <span className="header__favorite-count">3</span>
                       </Link>
                     </li>

@@ -1,8 +1,8 @@
 import { FormEvent, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { useAppDispatch } from '../../hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { loginAction } from '../../store/api-action';
-import { AppRoute } from '../../const';
+import { AppRoute, AuthorizationStatus } from '../../const';
 import { useNavigate } from 'react-router-dom';
 
 export const LoginPage = (): JSX.Element => {
@@ -12,6 +12,8 @@ export const LoginPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
+  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
 
@@ -20,11 +22,13 @@ export const LoginPage = (): JSX.Element => {
         login: loginRef.current.value,
         password: passwordRef.current.value
       }));
-
-      navigate(AppRoute.Main);
     }
 
+    if (authorizationStatus === AuthorizationStatus.Auth) {
+      navigate(AppRoute.Main);
+    }
   };
+
   return (
     <div className="page page--gray page--login">
       <header className="header">

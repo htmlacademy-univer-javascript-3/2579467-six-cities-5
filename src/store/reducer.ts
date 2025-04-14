@@ -10,7 +10,7 @@ type State = {
   error: string | null;
   isOffersLoading: boolean;
   authorizationStatus: AuthorizationStatus;
-  UserData: UserData | null;
+  userData: UserData | null;
 }
 
 const initialState: State = {
@@ -19,7 +19,7 @@ const initialState: State = {
   error: null,
   isOffersLoading: false,
   authorizationStatus: AuthorizationStatus.Unknown,
-  UserData: null,
+  userData: null,
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -43,6 +43,6 @@ export const reducer = createReducer(initialState, (builder) => {
       state.authorizationStatus = action.payload;
     })
     .addCase(setUserData, (state, action) => {
-      state.UserData = action.payload;
+      state.userData = action.payload;
     });
 });
