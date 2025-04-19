@@ -1,8 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { App } from './components/app/app.tsx';
-import { MockReviews } from './mocks/reviews.ts';
-import { mockOffersNearby } from './mocks/offers-nearby.ts';
 import { Provider } from 'react-redux';
 import { store } from './store/index.ts';
 import { fetchOffersAction } from './store/api-action.ts';
@@ -18,10 +16,7 @@ root.render(
   <React.StrictMode>
     <Provider store={store}>
       <ErrorMessage/>
-      <App
-        reviews={MockReviews}
-        offersNearby={mockOffersNearby}
-      />
+      <App/>
     </Provider>
   </React.StrictMode>
 );
