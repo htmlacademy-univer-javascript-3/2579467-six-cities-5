@@ -1,5 +1,5 @@
-import { Offer, City, UserData } from '../types/types';
-import { changeCity, setOffers, loadOffers, setError, setOffersLoadingStatus, setAuthorizationStatus, setUserData } from './action';
+import { Offer, City, UserData, OfferData, Review } from '../types/types';
+import { changeCity, setOffers, loadOffers, setError, setOffersLoadingStatus, setAuthorizationStatus, setUserData, setCurrentOffer, setReviews, setOffersNearby, setOfferLoadingStatus, setReviewsLoadingStatus, setOffersNearbyLoadingStatus } from './action';
 import { AuthorizationStatus, CITIES } from '../const';
 
 import { createReducer } from '@reduxjs/toolkit';
@@ -9,8 +9,14 @@ type State = {
   offers: Offer[];
   error: string | null;
   isOffersLoading: boolean;
+  isCurrentOfferLoading: boolean;
+  isReviewsLoadng: boolean;
+  isOffersNearbyLoading: boolean;
   authorizationStatus: AuthorizationStatus;
   userData: UserData | null;
+  currentOffer: OfferData | null;
+  reviews: Review[];
+  offersNearby: Offer[];
 }
 
 const initialState: State = {
@@ -18,8 +24,14 @@ const initialState: State = {
   offers: [],
   error: null,
   isOffersLoading: false,
+  isCurrentOfferLoading: false,
+  isReviewsLoadng: false,
+  isOffersNearbyLoading: false,
   authorizationStatus: AuthorizationStatus.Unknown,
   userData: null,
+  currentOffer: null,
+  reviews: [],
+  offersNearby: [],
 };
 
 export const reducer = createReducer(initialState, (builder) => {
@@ -39,10 +51,28 @@ export const reducer = createReducer(initialState, (builder) => {
     .addCase(setOffersLoadingStatus, (state, action) => {
       state.isOffersLoading = action.payload;
     })
+    .addCase(setOfferLoadingStatus, (state, action) => {
+      state.isCurrentOfferLoading = action.payload;
+    })
+    .addCase(setReviewsLoadingStatus, (state, action) => {
+      state.isReviewsLoadng = action.payload;
+    })
+    .addCase(setOffersNearbyLoadingStatus, (state, action) => {
+      state.isCurrentOfferLoading = action.payload;
+    })
     .addCase(setAuthorizationStatus, (state, action) => {
       state.authorizationStatus = action.payload;
     })
     .addCase(setUserData, (state, action) => {
       state.userData = action.payload;
+    })
+    .addCase(setCurrentOffer, (state, action) => {
+      state.currentOffer = action.payload;
+    })
+    .addCase(setReviews, (state, action) => {
+      state.reviews = action.payload;
+    })
+    .addCase(setOffersNearby, (state, action) => {
+      state.offersNearby = action.payload;
     });
 });

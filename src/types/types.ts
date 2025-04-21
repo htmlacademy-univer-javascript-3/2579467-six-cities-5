@@ -61,3 +61,34 @@ export type UserData = {
   avatarUrl: string;
   isPro: boolean;
 };
+
+type Host = {
+  isPro: boolean;
+  name: string;
+  avatarUrl: string;
+}
+
+export type OfferData = {
+  bedrooms: number;
+  city: City;
+  description: string;
+  goods: string[];
+  host: Host;
+  id: string;
+  images: string[];
+  isFavorite: boolean;
+  isPremium: boolean;
+  location: Location;
+  maxAdults: number;
+  price: number;
+  rating: number;
+  title: string;
+  type: string;
+}
+
+export type Comment = {
+  comment: string;
+  rating: number;
+}
+
+
