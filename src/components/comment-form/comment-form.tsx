@@ -25,7 +25,9 @@ export const CommentForm = (): JSX.Element => {
 
   const handleFieldChange = (evt: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const {name, value} = evt.target;
-    setFormData({...formData, [name]: value});
+    setFormData({
+      ...formData, [name]: name === 'rating' ? Number(value) : value,
+    });
   };
 
   const handleSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
@@ -57,6 +59,8 @@ export const CommentForm = (): JSX.Element => {
                 key={value}
                 title={title}
                 value={value}
+                name="rating"
+                checked={formData.rating === value}
                 onChange={handleFieldChange}
               />
             ))

@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AppDispatch, State } from '../types/state';
 import { AuthData, Offer, UserData, OfferData, Review, Comment } from '../types/types';
 import { ApiRoute, AuthorizationStatus, TIMEOUT_SHOW_ERROR } from '../const';
-import { loadOffers, setAuthorizationStatus, setCurrentOffer, setError, setOffersLoadingStatus, setOffersNearby, setReviews, setUserData } from './action.js';
+import { loadOffers, setAuthorizationStatus, setCurrentOffer, setError, setOfferLoadingStatus, setOffersLoadingStatus, setOffersNearby, setOffersNearbyLoadingStatus, setReviews, setReviewsLoadingStatus, setUserData } from './action.js';
 import { dropToken, saveToken } from '../services/token';
 
 export const fetchOffersAction = createAsyncThunk<void, undefined, {
@@ -27,7 +27,9 @@ export const fetchOffersNearby = createAsyncThunk<void, string, {
 }>(
   'fetchOffers',
   async (offerId, {dispatch, extra: api}) => {
+    dispatch(setOffersNearbyLoadingStatus(true));
     const {data} = await api.get<Offer[]>(`${ApiRoute.Offers}/${offerId}${ApiRoute.Nearby}`);
+    dispatch(setOffersNearbyLoadingStatus(false));
     dispatch(setOffersNearby(data));
   },
 );
@@ -97,7 +99,9 @@ export const fetchOfferAction = createAsyncThunk<void, string, {
 }>(
   'fetchOffer',
   async (offerId, {dispatch, extra: api}) => {
+    dispatch(setOfferLoadingStatus(true));
     const {data} = await api.get<OfferData>(`${ApiRoute.Offers}/${offerId}`);
+    dispatch(setOfferLoadingStatus(false));
     dispatch(setCurrentOffer(data));
   }
 );
@@ -109,7 +113,9 @@ export const fetchReviewsAction = createAsyncThunk<void, string, {
 }>(
   'fetchReviews',
   async (offerId, {dispatch, extra: api}) => {
+    dispatch(setReviewsLoadingStatus(true));
     const {data} = await api.get<Review[]>(`${ApiRoute.Comments}/${offerId}`);
+    dispatch(setReviewsLoadingStatus(false));
     dispatch(setReviews(data));
   }
 );
