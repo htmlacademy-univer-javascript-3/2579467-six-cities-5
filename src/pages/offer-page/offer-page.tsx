@@ -2,7 +2,7 @@ import { CommentForm } from '../../components/comment-form/comment-form';
 import { ReviewsList } from '../../components/reviews-list/reviews-list';
 import { OffersList } from '../../components/offers-list/offers-list';
 import { Map } from '../../components/map/map';
-import { useEffect } from 'react';
+import { useEffect, useMemo } from 'react';
 import { Header } from '../../components/header/header';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
@@ -27,16 +27,21 @@ export const OfferPage = () => {
     }
   }, [dispatch, id]);
 
-  const offers = useAppSelector((state) => state.offers);
-  const isOfferLoading = useAppSelector((state) => state.isCurrentOfferLoading);
-  const isReviewsLoading = useAppSelector((state) => state.isReviewsLoadng);
-  const isOffersNearbyLoading = useAppSelector((state) => state.isOffersNearbyLoading);
-  const currentOfferData = useAppSelector((state) => state.currentOffer);
-  const currentOffer = offers.find((offer) => id === offer.id);
-  const reviews = useAppSelector((state) => state.reviews);
-  const offersNearby = useAppSelector((state) => state.offersNearby);
+  const offers = useAppSelector((state) => state.offers.offers);
+  const isOfferLoading = useAppSelector((state) => state.offer.isCurrentOfferLoading);
+  const isReviewsLoading = useAppSelector((state) => state.reviews.isReviewsLoadng);
+  const isOffersNearbyLoading = useAppSelector((state) => state.offer.isOffersNearbyLoading);
+  const currentOfferData = useAppSelector((state) => state.offer.currentOffer);
+  const currentOffer = useMemo(() => {
+    if (offers.length > 0) {
+      return offers.find((offer) => id === offer.id);
+    }
+  }, [offers, id]);
 
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const reviews = useAppSelector((state) => state.reviews.reviews);
+  const offersNearby = useAppSelector((state) => state.offer.offersNearby);
+
+  const authorizationStatus = useAppSelector((state) => state.auth.authorizationStatus);
 
   const isAuthorized = authorizationStatus === AuthorizationStatus.Auth;
 
@@ -45,6 +50,7 @@ export const OfferPage = () => {
       navigate(AppRoute.NotFoundPage);
     }
   }, [currentOffer, navigate]);
+
 
   return (
     <div className="page">

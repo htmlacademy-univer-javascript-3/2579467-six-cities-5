@@ -4,12 +4,14 @@ import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { logoutAction } from '../../store/api-action';
 
 export const Header = () => {
-  const userData = useAppSelector((state) => state.userData);
+  const userData = useAppSelector((state) => state.auth.userData);
 
   const dispatch = useAppDispatch();
 
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const authorizationStatus = useAppSelector((state) => state.auth.authorizationStatus);
   const isAuthorized = authorizationStatus === AuthorizationStatus.Auth;
+
+  const favoritesOffers = useAppSelector((state) => state.favorites.favoritesOffers);
 
   const handleSignOut = () => {
     dispatch(logoutAction());
@@ -33,7 +35,7 @@ export const Header = () => {
                       <Link to={AppRoute.Favorites} className="header__nav-link header__nav-link--profile">
                         <div className="header__avatar-wrapper user__avatar-wrapper"></div>
                         <span className="header__user-name user__name">{userData?.email}</span>
-                        <span className="header__favorite-count">3</span>
+                        <span className="header__favorite-count">{favoritesOffers.length}</span>
                       </Link>
                     </li>
                     <li className="header__nav-item">

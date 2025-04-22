@@ -4,18 +4,18 @@ import { Offer } from '../../types/types';
 import { Map } from '../../components/map/map';
 import { useMemo, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
-import { changeCity } from '../../store/action';
 import { SortForm } from '../../components/sort-form/sort-form';
 import { SortName } from '../../const';
 import { Header } from '../../components/header/header';
+import { changeCity } from '../../store/offers-slice/offers-slice';
 
 
 export const MainPage = (): JSX.Element => {
   const [selectedPoint, setSelectedPoint] = useState<Offer|null>(null);
   const [selectedSort, setSelectedSort] = useState<SortName>(SortName.Popular);
 
-  const currentCity = useAppSelector((state) => state.city);
-  const offers = useAppSelector((state) => state.offers);
+  const currentCity = useAppSelector((state) => state.offers.city);
+  const offers = useAppSelector((state) => state.offers.offers);
 
   const dispatch = useAppDispatch();
 

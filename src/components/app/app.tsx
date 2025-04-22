@@ -14,7 +14,7 @@ import { getToken } from '../../services/token';
 
 
 export const App = (): JSX.Element => {
-  const isOffersLoading = useAppSelector((state) => state.isOffersLoading);
+  const isOffersLoading = useAppSelector((state) => state.offers.isOffersLoading);
 
   const dispatch = useAppDispatch();
 

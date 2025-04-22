@@ -12,7 +12,7 @@ export const LoginPage = (): JSX.Element => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const authorizationStatus = useAppSelector((state) => state.authorizationStatus);
+  const authorizationStatus = useAppSelector((state) => state.auth.authorizationStatus);
 
   const handleSubmit = (evt: FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
