@@ -19,9 +19,6 @@ const offersSlice = createSlice({
   name: 'offers',
   initialState,
   reducers: {
-    setOffersLoadingStatus: (state, action: PayloadAction<boolean>) => {
-      state.isOffersLoading = action.payload;
-    },
     changeCity: (state, action: PayloadAction<City>) => {
       state.city = action.payload;
     },
@@ -41,5 +38,5 @@ const offersSlice = createSlice({
   }
 });
 
-export const { setOffersLoadingStatus, changeCity } = offersSlice.actions;
+export const { changeCity } = offersSlice.actions;
 export default offersSlice.reducer;

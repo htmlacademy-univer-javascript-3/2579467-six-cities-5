@@ -16,15 +16,7 @@ const initialState: AuthState = {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {
-    setAuthorizationStatus: (state, action: PayloadAction<AuthorizationStatus>) => {
-      state.authorizationStatus = action.payload;
-    },
-    setUserData: (state, action: PayloadAction<UserData>) => {
-      state.userData = action.payload;
-    },
-
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(checkAuthAction.fulfilled, (state, action: PayloadAction<UserData>) => {
@@ -50,5 +42,4 @@ const authSlice = createSlice({
   }
 });
 
-export const { setAuthorizationStatus, setUserData } = authSlice.actions;
 export default authSlice.reducer;

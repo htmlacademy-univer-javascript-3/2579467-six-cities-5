@@ -15,11 +15,7 @@ const initialState: ReviewsState = {
 const reviewsSlice = createSlice({
   name: 'reviews',
   initialState,
-  reducers: {
-    setReviewsLoadingStatus: (state, action: PayloadAction<boolean>) => {
-      state.isReviewsLoadng = action.payload;
-    }
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchReviewsAction.pending, (state) => {
@@ -35,5 +31,4 @@ const reviewsSlice = createSlice({
   }
 });
 
-export const { setReviewsLoadingStatus } = reviewsSlice.actions;
 export default reviewsSlice.reducer;

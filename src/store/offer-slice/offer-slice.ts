@@ -19,14 +19,7 @@ const initialState: OfferState = {
 const offerSlice = createSlice({
   name: 'offer',
   initialState,
-  reducers: {
-    setOfferLoadingStatus: (state, action: PayloadAction<boolean>) => {
-      state.isCurrentOfferLoading = action.payload;
-    },
-    setOffersNearbyLoadingStatus: (state, action: PayloadAction<boolean>) => {
-      state.isOffersNearbyLoading = action.payload;
-    }
-  },
+  reducers: {},
   extraReducers: (builder) => {
     builder
       .addCase(fetchOfferAction.pending, (state) => {
@@ -52,5 +45,4 @@ const offerSlice = createSlice({
   }
 });
 
-export const { setOfferLoadingStatus, setOffersNearbyLoadingStatus } = offerSlice.actions;
 export default offerSlice.reducer;
