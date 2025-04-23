@@ -91,4 +91,6 @@ export type Comment = {
   rating: number;
 }
 
+export type GroupedOffersByCity = {[key: string]: Offer[] };
+
 

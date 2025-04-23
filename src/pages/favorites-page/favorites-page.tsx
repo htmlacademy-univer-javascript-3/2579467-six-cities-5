@@ -1,21 +1,22 @@
 import { Link } from 'react-router-dom';
-import { Offer } from '../../types/types';
 import { OffersList } from '../../components/offers-list/offers-list';
-import { useAppSelector } from '../../hooks/hooks';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
 import { Header } from '../../components/header/header';
-
-type GroupedOffersByCity = {[key: string]: Offer[] };
+import { useEffect } from 'react';
+import { fetchFavoritesAction } from '../../store/api-action';
+import { getFavoritesByCity } from '../../helpers';
 
 export const FavoritesPage = (): JSX.Element => {
 
-  const offers = useAppSelector((state) => state.offers);
+  const dispatch = useAppDispatch();
 
-  const favorites = offers
-    .filter((offer) => offer.isFavorite)
-    .reduce((acc: GroupedOffersByCity, offer) => {
-      (acc[offer.city.name] ||= []).push(offer);
-      return acc;
-    }, {});
+  useEffect(() => {
+    dispatch(fetchFavoritesAction());
+  }, [dispatch]);
+
+  const favorites = useAppSelector((state) => state.favorites.favoritesOffers);
+
+  const favoritesByCity = getFavoritesByCity(favorites);
 
   return (
     <div className="page">
@@ -25,7 +26,7 @@ export const FavoritesPage = (): JSX.Element => {
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
             <ul className="favorites__list">
-              {Object.entries(favorites).map(([city, offer]) => (
+              {Object.entries(favoritesByCity).map(([city, offer]) => (
                 <li className="favorites__locations-items" key={city}>
                   <div className="favorites__locations locations locations--current">
                     <div className="locations__item">

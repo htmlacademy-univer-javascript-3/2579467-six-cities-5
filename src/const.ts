@@ -116,5 +116,6 @@ export enum ApiRoute {
   Logout = '/logout',
   Comments = '/comments',
   Nearby = '/nearby',
+  Favorites = '/favorite',
 }
 

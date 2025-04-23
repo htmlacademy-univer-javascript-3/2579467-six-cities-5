@@ -1,7 +1,9 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Offer } from '../../types/types';
-import { CARD_CLASS, CARD_INFO_CLASS, IMAGE_WRAPPER_CLASS } from '../../const';
+import { AppRoute, AuthorizationStatus, CARD_CLASS, CARD_INFO_CLASS, IMAGE_WRAPPER_CLASS } from '../../const';
 import { Rating } from '../rating/rating';
+import { useAppDispatch, useAppSelector } from '../../hooks/hooks';
+import { setFavoritesStatusAction } from '../../store/api-action';
 
 type CardProps = {
   offer: Offer;
@@ -12,6 +14,9 @@ type CardProps = {
 
 export const Card = ({ offer, variant = 'default', onMouseEnter, onMouseLeave}: CardProps): JSX.Element => {
 
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+
   const isFavorites = variant === 'favorites';
 
   const cardClass = CARD_CLASS[variant];
@@ -19,6 +24,21 @@ export const Card = ({ offer, variant = 'default', onMouseEnter, onMouseLeave}: 
   const cardInfoClass = CARD_INFO_CLASS[variant];
 
   const imageSize = isFavorites ? { width: 150, height: 110 } : { width: 260, height: 200 };
+
+  const authorizationStatus = useAppSelector((state) => state.auth.authorizationStatus);
+
+  const handleFavoriteClick = () => {
+    if (authorizationStatus === AuthorizationStatus.NoAuth) {
+      navigate(AppRoute.Login);
+    }
+
+    dispatch(setFavoritesStatusAction(
+      {
+        offerId: offer.id,
+        status: Number(!offer.isFavorite),
+      }
+    ));
+  };
 
   return (
     <article
@@ -44,7 +64,7 @@ export const Card = ({ offer, variant = 'default', onMouseEnter, onMouseLeave}: 
             <b className="place-card__price-value">€{offer.price}</b>
             <span className="place-card__price-text">/ night</span>
           </div>
-          <button className={`place-card__bookmark-button ${offer.isFavorite ? 'place-card__bookmark-button--active' : ''} button`} type="button">
+          <button className={`place-card__bookmark-button ${offer.isFavorite ? 'place-card__bookmark-button--active' : ''} button`} type="button" onClick={handleFavoriteClick}>
             <svg className="place-card__bookmark-icon" width="18" height="19">
               <use xlinkHref="#icon-bookmark"></use>
             </svg>
